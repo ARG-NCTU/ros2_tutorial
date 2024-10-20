@@ -1,0 +1,11 @@
+__pycache__*
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+*.egg-info/
+*.pyc
+eeprom.bin
+mav.parm
+mav.tlog
+mav.tlog.raw
+logs/
