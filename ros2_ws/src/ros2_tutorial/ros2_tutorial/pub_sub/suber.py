@@ -16,6 +16,9 @@ class SimpleSuber(Node):
         self.subscription  # prevent unused variable warning
 
     def listener_callback(self, msg):
+         # Access the frame_id
+        frame_id = msg.header.frame_id
+
         # Extract the position and orientation from the Odometry message
         position = msg.pose.pose.position
         orientation = msg.pose.pose.orientation
@@ -25,10 +28,12 @@ class SimpleSuber(Node):
         angular_velocity = msg.twist.twist.angular
 
         # Log the position, orientation, and velocities
+        self.get_logger().info(f"frame id: {frame_id}")
         self.get_logger().info(f"Position: x={position.x}, y={position.y}, z={position.z}")
         self.get_logger().info(f"Orientation: x={orientation.x}, y={orientation.y}, z={orientation.z}, w={orientation.w}")
         self.get_logger().info(f"Linear Velocity: x={linear_velocity.x}, y={linear_velocity.y}, z={linear_velocity.z}")
         self.get_logger().info(f"Angular Velocity: x={angular_velocity.x}, y={angular_velocity.y}, z={angular_velocity.z}")
+        print()
 
 
 def main(args=None):

@@ -1,4 +1,6 @@
 from setuptools import find_packages, setup
+import os
+from glob import glob
 
 package_name = 'ros2_tutorial'
 
@@ -10,6 +12,9 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+
+        (os.path.join('share', package_name, 'launch/robots'),
+            glob(os.path.join('launch', '*.launch.py'))),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -22,8 +27,8 @@ setup(
         'console_scripts': [
             'puber = ros2_tutorial.pub_sub.puber:main',
             'suber = ros2_tutorial.pub_sub.suber:main',
-            # 'service_server = ros2_tutorial.server_client.server:main',
-            # 'service_client = ros2_tutorial.server_client.client:main',
+            'service_server = ros2_tutorial.server_client.service_server:main',
+            'service_client = ros2_tutorial.server_client.service_client:main',
             # 'action_server = ros2_tutorial.action_server_client.server:main',
             # 'action_client = ros2_tutorial.action_server_client.client:main',
         ],

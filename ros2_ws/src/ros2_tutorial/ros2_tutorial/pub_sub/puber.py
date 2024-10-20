@@ -7,6 +7,7 @@ from geometry_msgs.msg import Pose, Twist, Point, Quaternion, Vector3
 class SimplePuber(Node):
     def __init__(self):
         super().__init__('Simple_puber')
+        self.declare_parameter('frame_name', 'odom')
         self.puber = self.create_publisher(Odometry, 'odom_topic', 10)
         timer_period = 0.5
         self.timer = self.create_timer(timer_period, self.timer_callback)
@@ -16,10 +17,11 @@ class SimplePuber(Node):
     def timer_callback(self):
         # Create Odometry message
         odom_msg = Odometry()
+        frame_name = self.get_parameter('frame_name').get_parameter_value().string_value
 
         # Fill in the header information
         odom_msg.header.stamp = self.get_clock().now().to_msg()  # Timestamp
-        odom_msg.header.frame_id = "odom"  # Reference frame
+        odom_msg.header.frame_id = frame_name  # Reference frame
 
         # Fill in the pose (position + orientation)
         odom_msg.pose.pose.position = Point(x=self.i, y=0.0, z=0.0)
