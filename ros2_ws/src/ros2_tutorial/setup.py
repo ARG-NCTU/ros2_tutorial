@@ -29,8 +29,8 @@ setup(
             'suber = ros2_tutorial.pub_sub.suber:main',
             'service_server = ros2_tutorial.server_client.service_server:main',
             'service_client = ros2_tutorial.server_client.service_client:main',
-            # 'action_server = ros2_tutorial.action_server_client.server:main',
-            # 'action_client = ros2_tutorial.action_server_client.client:main',
+            'Fibonacci_action_server = ros2_tutorial.action_server_client.action_server:main',
+            'Fibonacci_action_client = ros2_tutorial.action_server_client.action_client:main',
         ],
     },
 )
